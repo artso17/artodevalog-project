@@ -5,6 +5,6 @@ deployment:
     - /bin/cp -R website/static_root $DEPLOYPATH
     - /bin/cp -R website/static $DEPLOYPATH
     - /bin/cp -R website/templates $DEPLOYPATH
-    # - /bin/cp -R website $DEPLOYPATH
+    - /bin/cp -R website/website $DEPLOYPATH
     - /bin/cp requirements.txt $DEPLOYPATH
     - /bin/cp manage.py $DEPLOYPATH
