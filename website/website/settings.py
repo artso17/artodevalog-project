@@ -27,7 +27,7 @@ SECRET_KEY = ''.join(random.sample(string.ascii_letters +
 # print(SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', default='True') == 'True'
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', default='*')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', default='*').split(',')
 
 
 # Application definition
