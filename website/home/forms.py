@@ -152,3 +152,8 @@ class PasswordResetForm(PasswordValidation, forms.Form):
         label='New Password', widget=forms.PasswordInput)
     password2 = forms.CharField(
         label='Confirm New Password', widget=forms.PasswordInput)
+
+
+class EmailForm(forms.Form):
+    """EmailForm definition."""
+    email = forms.EmailField()

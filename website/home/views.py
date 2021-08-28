@@ -51,6 +51,35 @@ def password_reset_user_confirm_view(request, uidb64, token):
     return render(request, 'register/token_invalid.html', context)
 
 
+def password_reset_user_view(request):
+    # print(request.POST)
+    form = EmailForm(request.POST or None)
+
+    if form.is_valid():
+        email = form.cleaned_data.get('email')
+        user = User.objects.filter(email=email).first()
+        print(user)
+        if user:
+            uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+            token = default_token_generator.make_token(user)
+        email_subject = 'Set your account.'
+        email_body = render_to_string('register/password_reset_email.html', {
+            'user': user,
+            'domain': get_current_site(request),
+            'uid64': urlsafe_base64_encode(force_bytes(user.pk)),
+            'token': default_token_generator.make_token(user),
+        })
+
+        email = EmailMessage(
+            subject=email_subject,
+            body=email_body,
+            from_email=settings.EMAIL_FROM_USER,
+            to=[user.email])
+        email.send()
+        return redirect('password_reset_done')
+    return render(request, 'account/password_reset.html', {})
+
+
 def activate_email(request, user):
     current_site = get_current_site(request)
     email_subject = 'Activate your account.'

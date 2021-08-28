@@ -22,13 +22,13 @@ from home.views import *
 
 urlpatterns = [
     path('rect/<code>', article_redirect_view, name='redirect'),
-    #     path('rect/<code>', ArticleRedirectView.as_view(), name='redirect'),
     path('delete-comment/', delete_comment, name='del_comment'),
     path("password-reset-confirm/<uidb64>/<token>", password_reset_user_confirm_view,
          name="password_reset_confirm"),
     path("password-reset-done/", PasswordResetUserDone.as_view(),
          name="password_reset_done"),
-    path("password-reset/", PasswordResetUserView.as_view(), name="passwordReset"),
+    #     path("password-reset/", PasswordResetUserView.as_view(), name="passwordReset"),
+    path("password-reset/", password_reset_user_view, name="passwordReset"),
     path("activation/<uidb64>/<token>", activation_email_view, name="activate"),
     path("register/", create_user_view, name="register"),
     path('show-comment/', show_more_comments_view, name='showCommAjax'),
