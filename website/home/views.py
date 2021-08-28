@@ -441,14 +441,24 @@ class ArticleDeleteView(GetQuerysetMixin, DeleteView):
     success_url = reverse_lazy('adminList')
 
 
-class ArticleRedirectView(RedirectView):
-    pattern_name = 'detail'
+# class ArticleRedirectView(RedirectView):
+#     pattern_name = 'detail'
 
-    def get_redirect_url(self, *args, **kwargs):
-        qs = get_object_or_404(Article, shortcode=kwargs['code'])
-        kwargs = {
-            'pk': qs.id,
-            'judul': qs.slug,
-            'category': qs.category.first().slug
-        }
-        return super().get_redirect_url(*args, **kwargs)
+#     def get_redirect_url(self, *args, **kwargs):
+#         qs = get_object_or_404(Article, shortcode=kwargs['code'])
+#         kwargs = {
+#             'pk': qs.id,
+#             'judul': qs.slug,
+#             'category': qs.category.first().slug
+#         }
+#         return super().get_redirect_url(*args, **kwargs)
+
+def article_redirect_view(request, code):
+    obj = get_object_or_404(Article, shortcode=code)
+    kwargs = {
+        'pk': obj.id,
+        'judul': obj.slug,
+        'category': obj.category.first().slug
+    }
+
+    return HttpResponseRedirect(reverse('detail', kwargs=kwargs))
