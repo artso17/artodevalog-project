@@ -74,7 +74,7 @@ class Article(models.Model):
         return super().save()
 
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'pk': self.id, 'judul': self.slug, 'category': slugify(self.category.first())})
+        return reverse('detailAdmin', kwargs={'pk': self.id, 'judul': self.slug, 'category': slugify(self.category.first())})
 
     @property
     def num_likes(self):
