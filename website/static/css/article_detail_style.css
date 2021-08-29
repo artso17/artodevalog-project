@@ -12,6 +12,11 @@ article article img {
   max-width: 100% !important;
 }
 
+article article iframe {
+  width: 100%;
+  height: 300px;
+}
+
 @media (max-width: 992px) {
   article article img,
   div.thumbnail-box img {
@@ -26,6 +31,9 @@ article article img {
     height: auto !important;
     width: 100% !important;
     max-width: 100% !important;
+  }
+  article article iframe {
+    height: 200px;
   }
   .user-action {
     -webkit-box-orient: vertical !important;
