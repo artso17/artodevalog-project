@@ -46,6 +46,8 @@ urlpatterns = [
          ArticleDetailView.as_view(), name='detail'),
     path('detail-auth/<slug:judul>/<str:pk>/<slug:category>',
          ArticleDetailAuthView.as_view(), name='detailAuth'),
+    path('detail-admin/<slug:judul>/<str:pk>/<slug:category>',
+         ArticleDetailAdminView.as_view(), name='detailAdmin'),
     path('category/<slug:slug>', ArticleCategoryListView.as_view(), name='category'),
     path('', ArticleListView.as_view(), name='list'),
     path('admin/admin/', admin.site.urls),
