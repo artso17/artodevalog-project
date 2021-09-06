@@ -116,7 +116,7 @@ class ArticleForm(forms.ModelForm):
 
         model = Article
         exclude = ['likes']
-        fields = '__all__'
+        fields = ['author', 'category', 'judul', 'snippet', 'published', 'isi']
 
         widgets = {
             'author': forms.TextInput(attrs={
@@ -128,8 +128,8 @@ class ArticleForm(forms.ModelForm):
             'category': forms.CheckboxSelectMultiple(),
             'judul': forms.TextInput(attrs={'class': 'form-control'}),
             'snippet': forms.Textarea(attrs={'class': 'form-control'}),
-            # 'image': forms.FileInput(attrs={'class': 'form-control'}),
             'published': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'isi': forms.Textarea(attrs={'width': '100%', 'height': 'auto'}),
         }
 
     def clean_judul(self):

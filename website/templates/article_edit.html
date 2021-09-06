@@ -1,5 +1,5 @@
 {% extends 'container.html' %}
-
+{% load static %}
 
 {% block title %}
     {{page_title}} | Artsodevalog
@@ -17,13 +17,10 @@
             <button class="btn btn-primary text-capitalize" type="submit">simpan</button>
           </div>
     </form>
-
     <script>
         if(document.getElementById('id_author')!=null){
             document.getElementById('id_author').value=1
         }
-        
-        console.log(document.getElementById('id_author'))
     </script>
 </main>
     
