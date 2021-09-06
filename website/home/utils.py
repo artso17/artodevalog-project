@@ -1,5 +1,6 @@
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
+from .models import *
 
 import six
 import random

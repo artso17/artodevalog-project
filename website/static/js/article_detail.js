@@ -5,17 +5,34 @@ const csrf=document.getElementsByName('csrfmiddlewaretoken')[0].value
 const numLikes=document.getElementsByClassName('num-likes')[0]
 const commentInput=document.getElementById('comment')
 const commentCont=document.getElementsByClassName('comment-container')[0]
-const socialShare=document.getElementsByClassName('social-share')
-const posttitle= encodeURI('Ingin tahu kelanjutannya? Cek selengkapnya di Artsodevalog:')
-const postUrl=encodeURIComponent(window.location.origin)
-// console.log(postUrl)
+const images=document.querySelectorAll('[data-src]')
+console.log(images)
 // console.log(socialShare[0])
 import * as modul from './module.js'
+const preloadImage=(entry)=>{
+    const src=entry.getAttribute('data-src');
+    if(!src) return
+    entry.src=src
+}
+
+const imgOptions={
+    threshold:0,
+    rootMargin: '0px 0px 300px 0px'
+}
+
+const imgObserver= new IntersectionObserver((entries,imgObserver)=>{
+    entries.forEach(entry=>{
+        if (!entry.isIntersecting) return
+        else{
+            preloadImage(entry.target)
+            imgObserver.unobserve(entry.target)
+        }
+    })
+},imgOptions)
+images.forEach(image=>imgObserver.observe(image))
 
 
-
-
-
+images.forEach(image=>imgObserver.observe(image))
 
 
 // console.log(encodeURIComponent(posttitle))
