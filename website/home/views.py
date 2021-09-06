@@ -387,22 +387,6 @@ class ArticleDetailView(GetContextDataMixin, DetailView):
     model = Article
     template_name = 'article_detail.html'
 
-    # def get_context_data(self, **kwargs):
-    #     qs = Article.objects.filter(id=self.kwargs['pk'])[0]
-    #     qs_lazy = qs.isi.replace('src', 'data-src')
-    #     # print(qs.isi)
-    #     self.extra_context = {
-    #         'qs_lazy': qs_lazy,
-    #         'categories': Category.objects.all(),
-    #         'curr_category': Category.objects.get(
-    #             slug=self.kwargs['category']),
-    #         'same_articles': Article.objects.filter(
-    #             category__slug=self.kwargs['category']).exclude(Q(id=self.kwargs['pk']) | Q(published=False)).order_by('-updated')[:5],
-    #         'comments': Comment.objects.filter(article__id=self.kwargs['pk'])[:10]
-    #     }
-    #     self.kwargs.update(self.extra_context)
-    #     return super().get_context_data()
-
 
 class PasswordResetUserDone(PasswordResetDoneView):
     template_name = 'account/password_reset_done.html'
@@ -444,18 +428,6 @@ class ArticleDeleteView(GetQuerysetMixin, DeleteView):
     template_name = "delete_view.html"
     success_url = reverse_lazy('adminList')
 
-
-# class ArticleRedirectView(RedirectView):
-#     pattern_name = 'detail'
-
-#     def get_redirect_url(self, *args, **kwargs):
-#         qs = get_object_or_404(Article, shortcode=kwargs['code'])
-#         kwargs = {
-#             'pk': qs.id,
-#             'judul': qs.slug,
-#             'category': qs.category.first().slug
-#         }
-#         return super().get_redirect_url(*args, **kwargs)
 
 def article_redirect_view(request, code):
     obj = get_object_or_404(Article, shortcode=code)
