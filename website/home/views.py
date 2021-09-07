@@ -383,7 +383,7 @@ class ArticleCategoryListView(ListView):
         return super().get_context_data()
 
 
-class ArticleDetailView(GetContextDataMixin, DetailView):
+class ArticleDetailView(GetQuerysetDetailMixin, GetContextDataMixin, DetailView):
     model = Article
     template_name = 'article_detail.html'
 

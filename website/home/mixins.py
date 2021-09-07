@@ -54,3 +54,8 @@ class GetContextDataMixin:
         }
         self.kwargs.update(self.extra_context)
         return super().get_context_data()
+
+
+class GetQuerysetDetailMixin:
+    def get_queryset(self):
+        return self.model._default_manager.all().exclude(published=False)
