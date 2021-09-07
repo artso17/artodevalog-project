@@ -30,9 +30,6 @@ const imgObserver= new IntersectionObserver((entries,imgObserver)=>{
 images.forEach(image=>imgObserver.observe(image))
 
 
-images.forEach(image=>imgObserver.observe(image))
-
-
 if (btn['show_more']!= undefined) btn['show_more'].addEventListener('click',e=>modul.showMoreComm(csrf,pk,e.target,commentCont,e.target.parentNode,btn['show_less'].parentNode))
 
 btn['show_less'].addEventListener('click',e=>{
