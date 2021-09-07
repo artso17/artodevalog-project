@@ -6,8 +6,6 @@ const numLikes=document.getElementsByClassName('num-likes')[0]
 const commentInput=document.getElementById('comment')
 const commentCont=document.getElementsByClassName('comment-container')[0]
 const images=document.querySelectorAll('[data-src]')
-console.log(images)
-// console.log(socialShare[0])
 import * as modul from './module.js'
 const preloadImage=(entry)=>{
     const src=entry.getAttribute('data-src');
@@ -35,10 +33,6 @@ images.forEach(image=>imgObserver.observe(image))
 images.forEach(image=>imgObserver.observe(image))
 
 
-// console.log(encodeURIComponent(posttitle))
-// socialShare['facebook_share'].setAttribute('href',`https://www.facebook.com/sharer.php?u=${postUrl}`)
-// socialShare['whatsapp_share'].setAttribute('href',`https://api.whatsapp.com/send?text=${posttitle} ${postUrl}`)
-// socialShare['linkedin_share'].setAttribute('href',`https://www.linkedin.com/shareArticle?mini=true&url=${postUrl}&title=${posttitle}`)
 if (btn['show_more']!= undefined) btn['show_more'].addEventListener('click',e=>modul.showMoreComm(csrf,pk,e.target,commentCont,e.target.parentNode,btn['show_less'].parentNode))
 
 btn['show_less'].addEventListener('click',e=>{
