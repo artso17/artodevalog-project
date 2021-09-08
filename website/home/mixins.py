@@ -42,7 +42,6 @@ class GetContextDataMixin:
     def get_context_data(self, **kwargs):
         qs = self.get_object()
         qs_lazy = qs.isi.replace('src', 'data-src')
-        # print(qs_lazy)
         self.extra_context = {
             'qs_lazy': qs_lazy,
             'categories': Category.objects.all(),

@@ -1,9 +1,7 @@
-const url =window.location
 const csrf=document.getElementsByName('csrfmiddlewaretoken')[0].value
 const searchInput=document.getElementsByClassName('search-input')
 const tableBody=document.getElementsByClassName('table-body')
 const detailUrl=tableBody[0].querySelector('a.nav-link')['href'].split('/')[3]
-//  console.log(detailUrl) 
 
 import { sendSearchData } from "./module.js"
 

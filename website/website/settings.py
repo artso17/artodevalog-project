@@ -24,7 +24,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ''.join(random.sample(string.ascii_letters +
                      string.digits+string.punctuation, 70))
-# print(SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', default='True') == 'True'
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', default='*').split(',')
@@ -33,7 +32,6 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', default='*').split(',')
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
     'django_unused_media',
 
     'django.contrib.admin',
@@ -57,13 +55,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
 ]
-# CKEDITOR_CONFIGS = {
-#     'default': {
-#         'toolbar': 'classic',
-#         'height': 'fit-content',
-#         'width': '100%',
-#     },
-# }
+
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
@@ -137,10 +129,8 @@ CKEDITOR_CONFIGS = {
 CKEDITOR_UPLOAD_PATH = 'uploads'
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
-
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -200,13 +190,11 @@ DATABASES = {
         'USER': os.environ.get('db_user', default='root'),
         'PASSWORD': os.environ.get('db_password', default=''),
         'HOST': os.environ.get('db_host', default='localhost'),
-        # 'PORT':'3306',
         'OPTIONS': {
             'sql_mode': 'STRICT_TRANS_TABLES',
         },
     }
 }
-# print(ALLOWED_HOSTS[0]=='*')
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 

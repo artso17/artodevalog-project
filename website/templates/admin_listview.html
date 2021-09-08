@@ -35,7 +35,7 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Judul</th>
-                    <th scope="col">Kategori</th>
+                    <!-- <th scope="col">Kategori</th> -->
                     <th scope="col">Author</th>
                     <th scope="col">Published</th>
                     <th scope="col">likes</th>
@@ -49,12 +49,12 @@
                     <tr >
                         <th scope="row">{{forloop.counter}}</th>
                         <td><a href="{% url 'detailAdmin' article.slug article.id article.category.first.slug %}" class="nav-link">{{article.judul|truncatewords:2}}</a></td>
-                        <td>
+                        <!-- <td>
                         {% for category in article.category.all %}
                             {{category}}
                         {% endfor %}
-                        </td>
-                        <td>{{article.author}}</td>
+                        </td> -->
+                        <td>{{article.author.first_name}}</td>
                         {% if article.published %}
                         <td>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16">

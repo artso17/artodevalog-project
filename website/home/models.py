@@ -31,7 +31,6 @@ class Category(models.Model):
 
 
 def upload_location(instance, filename):
-    print('ini', instance.id)
     return f'image/artikel/{instance.id}/{filename}'
 
 

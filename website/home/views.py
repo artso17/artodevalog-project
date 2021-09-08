@@ -53,13 +53,11 @@ def password_reset_user_confirm_view(request, uidb64, token):
 
 
 def password_reset_user_view(request):
-    # print(request.POST)
     form = EmailForm(request.POST or None)
 
     if form.is_valid():
         email = form.cleaned_data.get('email')
         user = User.objects.filter(email=email).first()
-        print(user)
         if user:
             uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
             token = default_token_generator.make_token(user)
@@ -213,7 +211,7 @@ def search_article_view(request):
         data = request.POST['data']
         if request.POST['nameInput'] == 'article_search':
             curr_objects = Article.objects.filter(
-                Q(judul__icontains=data) | Q(category__name__icontains=data))
+                Q(judul__icontains=data) | Q(category__name__icontains=data) | Q(author__first_name__icontains=data)).distinct()
             if len(data) > 0:
                 if len(curr_objects) > 0:
                     for obj in curr_objects:
@@ -223,6 +221,7 @@ def search_article_view(request):
                             'author': obj.author.first_name,
                             'updated': obj.updated.strftime('%d/%m/%y'),
                             'published': obj.published,
+                            'likes': obj.num_likes,
                             'category': [cate.name for cate in obj.category.all()],
                             'slug': obj.slug,
                             'category_1st_slug': obj.category.first().slug,
@@ -241,6 +240,7 @@ def search_article_view(request):
                         'judul': obj.judul,
                         'author': obj.author.first_name,
                         'updated': obj.updated.strftime('%d/%m/%y'),
+                        'likes': obj.likes.all().count(),
                         'published': obj.published,
                         'category': [cate.name for cate in obj.category.all()],
                     }
