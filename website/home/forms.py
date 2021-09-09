@@ -116,7 +116,8 @@ class ArticleForm(forms.ModelForm):
 
         model = Article
         exclude = ['likes']
-        fields = ['author', 'category', 'judul', 'snippet', 'published', 'isi']
+        fields = ['author', 'judul', 'category',
+                  'image',  'snippet', 'published', 'isi']
 
         widgets = {
             'author': forms.TextInput(attrs={
