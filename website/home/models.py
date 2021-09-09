@@ -34,23 +34,6 @@ def upload_location(instance, filename):
     return f'image/artikel/{instance.id}/{filename}'
 
 
-# def thumbnail(instance):
-#     image_600 = (600, 600)
-#     image_500 = (500, 500)
-#     pat = instance.image.path.split("\\")
-#     upat = '/'.join(pat[:-1])
-#     ur = instance.image.url.split('/')
-#     imag = ur[-1]
-#     img = Image.open(instance.image.path)
-#     img.thumbnail(image_600)
-#     instance.image = f'image/artikel/{instance.id}/600_{imag}'
-#     img.save(f'{upat}/600_{imag}')
-
-    # img.thumbnail(image_600)
-    # instance.thumbnail = f'image/artikel/{instance.id}/thumbnail600_{imag}'
-    # img.save(f'{upat}/thumbnail600_{imag}')
-
-
 class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     judul = models.CharField(max_length=100, blank=True)
@@ -67,7 +50,7 @@ class Article(models.Model):
         max_length=5, blank=True)
 
     def save(self):
-        self.slug = slugify(self.judul)
+        self.slug = '-'.join(self.judul.split(' ')[:3])
         if not self.shortcode or self.shortcode == '':
             self.shortcode = check_code(self)
         return super().save()
